@@ -1,24 +1,30 @@
 import { initializeApp } from "firebase/app"
 import { getFirestore } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 export default defineNuxtPlugin(() => {
-  
+
   const firebaseConfig = {
-    apiKey: "AIzaSyA51muqVNTA6CDom67K8lIQSWqsz5Je3QM",
-    authDomain: "piniafirestore.firebaseapp.com",
-    projectId: "piniafirestore",
-    storageBucket: "piniafirestore.appspot.com",
-    messagingSenderId: "475584835245",
-    appId: "1:475584835245:web:9874e9d64e04399784a024"
-  }
+    apiKey: FB_APP_API_KEY,
+    authDomain: "bingeables2.firebaseapp.com",
+    projectId: "bingeables2",
+    storageBucket: "bingeables2.appspot.com",
+    messagingSenderId: "894440570921",
+    appId: "1:894440570921:web:0d82f440dc076fcbea1c38",
+    measurementId: "G-S8CM6JDFWB"
+  };
 
   const app = initializeApp(firebaseConfig)
   const db = getFirestore(app)
+  const auth = getAuth(app) 
 
   return {
     provide: {
       db,
+      auth
     }
   }
 
 })
+
+// const {$db, $auth} = useNuxtApp()
