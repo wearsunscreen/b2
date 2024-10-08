@@ -5,7 +5,7 @@ import { getAuth } from 'firebase/auth'
 export default defineNuxtPlugin(() => {
 
   const firebaseConfig = {
-    apiKey: FB_APP_API_KEY,
+    apiKey: "-_4g",
     authDomain: "bingeables2.firebaseapp.com",
     projectId: "bingeables2",
     storageBucket: "bingeables2.appspot.com",

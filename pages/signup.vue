@@ -9,18 +9,22 @@
             <input type="password" v-model="password" required
                 class="w-full px-3 py-3 mb-4 border border-gray-300 rounded-sm">
             <button type="submit" class="w-full bg-purple-500 text-white py-2 rounded-sm">Sign Up</button>
-            <p class="text-red-500 mt-4 text-center">
-                <!-- error message -->
+            <p v-if="authStore.signupError" class="text-red-500 mt-4 text-center">
+                {{  authStore.signupError }}
             </p>
         </form>
     </div>
 </template>
 
 <script setup>
+import { useAuthStore } from '@/stores/auth';
 const email = ref('');
 const password = ref('');
+const authStore = useAuthStore();
 
 const handleSignup = async () => {
-    console.log(email.value, password.value);
-}  
+    console.log("before signup", authStore.user);
+    await authStore.signup(email.value, password.value);
+    console.log("after signup", authStore.user);
+}
 </script>
