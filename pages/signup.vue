@@ -32,5 +32,11 @@
   const handleSignup = async () => {
     await authStore.signup(email.value, password.value)
   }
+
+  definePageMeta({
+  title: 'Bingeables2',
+  description: 'Bingeable podcast episodes.',
+  middleware: ['guest']
+})
   
   </script>

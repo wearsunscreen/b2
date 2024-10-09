@@ -18,6 +18,11 @@ onMounted(async () => {
   habitStore.fetchHabits()
 })
 
+definePageMeta({
+  title: 'Bingeables2',
+  description: 'Bingeable podcast episodes.',
+  middleware: ['auth']
+})
 </script>
 
 <style>
