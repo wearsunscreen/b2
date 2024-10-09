@@ -6,7 +6,9 @@ import {
   getDocs, 
   doc, 
   deleteDoc, 
-  updateDoc 
+  updateDoc,
+  query,
+  where
 } from 'firebase/firestore'
 
 export const useHabitStore = defineStore('habitStore', {
@@ -18,10 +20,11 @@ export const useHabitStore = defineStore('habitStore', {
     // fetching all habits
     async fetchHabits() {
       this.error = null
-      const { $db } = useNuxtApp()
+      const { $db, $auth } = useNuxtApp()
 
       try {
-        const snapshot = await getDocs(collection($db, 'habits'))
+        const habitsQuery = query(collection($db, 'habits'), where('userId', '==', $auth.currentUser.uid))
+        const snapshot = await getDocs(habitsQuery)
         this.habits = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
 
       } catch (error) {
@@ -33,12 +36,13 @@ export const useHabitStore = defineStore('habitStore', {
     // adding new habits
     async addHabit(name) {
       this.error = null
-      const { $db } = useNuxtApp()
+      const { $db, $auth } = useNuxtApp()
 
       const habit = {
         name,
         completions: [],
         streak: 0,
+        userId: $auth.currentUser.uid
       }
 
       try {
