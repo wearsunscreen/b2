@@ -2,7 +2,7 @@
 
 ## Setup
 
-Make sure to install the dependencies:
+Install the dependencies:
 
 ```bash
 # npm
