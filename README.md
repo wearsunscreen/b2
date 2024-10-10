@@ -1,4 +1,12 @@
-# Starter Project for Pinia & Firebase Auth Course
+# Vue Template
+
+## Features
+
+- Navbar
+- Firebase authentication 
+- Email/password signup, login
+- Google login
+- Firebase collection
 
 ## Setup
 
@@ -11,6 +19,10 @@ npm install
 # yarn
 yarn install
 ```
+## Firebase configuation
+
+Create a new project in Firebase and replace the `firebaseConfig` object in '$/plugins/firebase.client.js'
+
 
 ## Development Server
 
