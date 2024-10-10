@@ -3,7 +3,9 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
 } from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', {
@@ -61,5 +63,26 @@ export const useAuthStore = defineStore('auth', {
         this.loginError = error.message
       }
     },
+
+    async loginWithGoogle() {
+      const { $auth } = useNuxtApp()
+      const provider = new GoogleAuthProvider()
+      this.loginError = null
+      console.log('attempting to login with google')
+
+      signInWithPopup($auth, provider)
+        .then((result) => {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          this.user = result.user;
+          console.log('user after login:', this.user)
+        }).catch((error) => {
+          this.loginError = error.message
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          const email = error.customData.email;
+          const credential = GoogleAuthProvider.credentialFromError(error);
+        });
+    }
   },
 })

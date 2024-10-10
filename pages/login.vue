@@ -23,10 +23,9 @@
       <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
       <div class="w-full max-w-sm bg-white shadow-md rounded p-8">
-        <button type="submit" class="w-full bg-purple-500 text-white py-2 rounded-sm">
+        <button @click="handleGoogleLogin" class="w-full bg-purple-500 text-white py-2 rounded-sm">
           Login with Google
         </button>
-
         <p v-if="authStore.loginError" class="text-red-500 mt-4 text-center">
           {{ authStore.loginError }}
         </p>
@@ -43,7 +42,13 @@ const password = ref('')
 const authStore = useAuthStore()
 
 const handleLogin = async () => {
+  console.log('login')
   await authStore.login(email.value, password.value)
+}
+
+const handleGoogleLogin = async () => {
+  console.log('login with google')
+  await authStore.loginWithGoogle()
 }
 
 definePageMeta({
