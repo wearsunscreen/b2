@@ -42,12 +42,10 @@ const password = ref('')
 const authStore = useAuthStore()
 
 const handleLogin = async () => {
-  console.log('login')
   await authStore.login(email.value, password.value)
 }
 
 const handleGoogleLogin = async () => {
-  console.log('login with google')
   await authStore.loginWithGoogle()
 }
 
