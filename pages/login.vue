@@ -1,6 +1,6 @@
 <template>
   <HideFromUser>
-    <div class="flex justify-center mt-10">
+    <div class="flex justify-center items-center mt-10 flex-col">
       <div class="w-full max-w-sm bg-white shadow-md rounded p-8">
         <h2 class="text-2xl text-gray-800 font-bold text-center mb-6">Login</h2>
 
@@ -19,6 +19,17 @@
             {{ authStore.loginError }}
           </p>
         </form>
+      </div>
+      <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
+      <div class="w-full max-w-sm bg-white shadow-md rounded p-8">
+        <button type="submit" class="w-full bg-purple-500 text-white py-2 rounded-sm">
+          Login with Google
+        </button>
+
+        <p v-if="authStore.loginError" class="text-red-500 mt-4 text-center">
+          {{ authStore.loginError }}
+        </p>
       </div>
     </div>
   </HideFromUser>
